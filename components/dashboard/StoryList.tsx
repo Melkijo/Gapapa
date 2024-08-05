@@ -12,30 +12,50 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { StoryListProps, StoryType } from "@/types/storyType";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
+
+async function getStories({ email }: { email: string }) {
+  const querySnapshot = await getDocs(collection(db, email));
+  const data: any[] = [];
+  querySnapshot.forEach((doc) => {
+    data.push(doc.data());
+  });
+  return data;
+}
 
 const storiesPerPage = 8;
 
-export default function StoryList({ stories }: StoryListProps) {
+export default function StoryList({ email }: { email: string }) {
+  const [userStories, setUserStories] = useState<StoryType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(stories.length / storiesPerPage);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getStories({ email });
+      setUserStories(data);
+    }
+    fetchData();
+  }, []);
+
+  const totalPages = Math.ceil(userStories.length / storiesPerPage);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
     console.log(currentPage);
   };
 
-  const displayedStories = stories.slice(
+  const displayedStories = userStories.slice(
     (currentPage - 1) * storiesPerPage,
     currentPage * storiesPerPage
   );
   //   console.log(displayedStories);
   return (
     <>
-      <div className="grid grid-cols-4 gap-4">
-        {displayedStories.map((item) => (
-          <div key={item.id}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {displayedStories.map((item, i) => (
+          <div key={i}>
             <StoryItem {...item} />
           </div>
         ))}

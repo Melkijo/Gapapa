@@ -30,19 +30,19 @@ const formSchema = z.object({
   feel: z.string(),
   story: z.string(),
   photo: z.any(),
-  userEmail: z.string(),
   recommendation: z.string(),
+  email: z.string(),
 });
 
 async function addStory(data: z.infer<typeof formSchema>) {
   console.log(data);
   try {
-    const docRef = await addDoc(collection(db, "stories"), {
+    const docRef = await addDoc(collection(db, data.email), {
       storyDate: data.storyDate,
       feel: data.feel,
       story: data.story,
-      //   photo: data.photo,
-      userId: data.userEmail,
+      email: data.email,
+      photo: data.photo,
     });
     console.log("Document written with ID: ", docRef.id);
     alert("Story added!");
@@ -52,7 +52,7 @@ async function addStory(data: z.infer<typeof formSchema>) {
   }
 }
 
-export default function ButtonAddStory() {
+export default function ButtonAddStory({ email }: { email: string }) {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
@@ -60,12 +60,11 @@ export default function ButtonAddStory() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       storyDate: new Date().toDateString(),
-      userEmail: "1",
       recommendation: "",
-      //give default value for all data
       feel: "netral",
       story: "",
       photo: "",
+      email: email,
     },
   });
 
@@ -94,20 +93,18 @@ export default function ButtonAddStory() {
     // ✅ This will be type-safe and validated.
 
     setLoading(true);
-
+    values.photo = imageUrl;
     addStory(values);
   }
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <div className="w-[250px] h-[160px] bg-gray-200 flex justify-center items-center border border-gray-400 rounded-lg hover:bg-gray-300">
-          <PlusIcon />
-        </div>
+      <DialogTrigger className="w-full md:w-[250px] h-[160px] bg-gray-200 flex justify-center items-center border border-gray-400 rounded-lg hover:bg-gray-300">
+        <PlusIcon />
       </DialogTrigger>
       <DialogContent>
-        <div className="flex">
-          <ScrollArea className="h-[400px] w-full rounded-md  ">
+        <div className="flex flex-col-reverse md:flex-row gap-4">
+          <ScrollArea className="h-[400px] w-full rounded-md ">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}

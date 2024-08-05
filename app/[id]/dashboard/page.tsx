@@ -11,19 +11,21 @@ export default async function Page() {
   const session = await getServerSession(authConfig);
   return (
     <UserSidebar>
-      <div className="mb-6">
+      <div className="mb-6 px-4">
         <h2 className="font-bold text-2xl">
           Bagaimana hari ini {session?.user?.name}?
         </h2>
         <p>Cerita aja yaa, jangan di pendem pendem</p>
       </div>
-      <ButtonAddStory />
+      <div className="px-4">
+        <ButtonAddStory email={session?.user?.email || ""} />
 
-      <div className="my-4">
-        <hr />
-      </div>
-      <div>
-        <StoryList stories={exampleData} />
+        <div className="my-4">
+          <hr />
+        </div>
+        <div>
+          <StoryList email={session?.user?.email || ""} />
+        </div>
       </div>
     </UserSidebar>
   );

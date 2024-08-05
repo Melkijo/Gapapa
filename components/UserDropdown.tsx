@@ -53,8 +53,6 @@ export function UserDropdown({
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>Akun</DropdownMenuItem>
-
-          <DropdownMenuItem>Pengaturan</DropdownMenuItem>
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />

@@ -1,9 +1,9 @@
 type StoryType = {
-    id: number;
-    date: string;
-    time: string;
-    mood: string;
-    color: string;
+    email: string;
+  feel: string;
+  photo: string;
+  story: string;
+  storyDate: string;
   };
 
   type StoryListProps = {

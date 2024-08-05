@@ -9,7 +9,7 @@ export function GoogleSignInButton() {
   return (
     <button
       onClick={handleClick}
-      className="flex gap-4 items-center border border-gray-300 rounded-lg py-2 px-[100px] justify-center hover:bg-gray-200"
+      className="flex gap-4 items-center border border-gray-300 rounded-lg py-2  justify-center hover:bg-gray-200"
     >
       <GoogleIcon />
       <p className="font-medium">Masuk dengan Google</p>
