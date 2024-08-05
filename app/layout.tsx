@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import SessionProvider from "./SessionProvider";
 
 export const metadata: Metadata = {
   title: "gapapa | Bantuan AI untuk mental",
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={satoshi.className}>{children}</body>
+      <body className={satoshi.className}>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }

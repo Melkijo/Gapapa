@@ -29,7 +29,7 @@ export default function Navbar() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/masuk" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className="py-2 px-4 hover:bg-gray-200 rounded-sm">
                   Masuk
                 </NavigationMenuLink>
               </Link>
@@ -38,7 +38,7 @@ export default function Navbar() {
             <NavigationMenuItem>
               <Link
                 href="registrasi"
-                className={buttonVariants({ variant: "yellow" })}
+                className="py-2.5 px-4 bg-main-yellow hover:bg-yellow-400 text-main-black rounded-sm"
               >
                 Mulai gratis
               </Link>

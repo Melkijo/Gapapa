@@ -40,51 +40,50 @@ export default function StoryList({ stories }: StoryListProps) {
           </div>
         ))}
       </div>
-      <div className="flex justify-end w-full">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              {currentPage === 1 ? (
-                ""
-              ) : (
-                <PaginationPrevious
-                  href="#"
-                  onClick={(e) => {
-                    handlePageChange(currentPage - 1);
-                  }}
-                  // disabled={currentPage === 1}?
-                />
-              )}
+
+      <Pagination className="flex justify-end my-8">
+        <PaginationContent>
+          <PaginationItem>
+            {currentPage === 1 ? (
+              ""
+            ) : (
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  handlePageChange(currentPage - 1);
+                }}
+                // disabled={currentPage === 1}?
+              />
+            )}
+          </PaginationItem>
+          {[...Array(totalPages)].map((_, index) => (
+            <PaginationItem key={index}>
+              <PaginationLink
+                href="#"
+                onClick={(e) => {
+                  handlePageChange(index + 1);
+                }}
+                className={currentPage === index + 1 ? "bg-yellow-400" : ""}
+              >
+                {index + 1}
+              </PaginationLink>
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    handlePageChange(index + 1);
-                  }}
-                  className={currentPage === index + 1 ? "bg-yellow-400" : ""}
-                >
-                  {index + 1}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-            <PaginationItem>
-              {currentPage === totalPages ? (
-                ""
-              ) : (
-                <PaginationNext
-                  href="#"
-                  onClick={(e) => {
-                    handlePageChange(currentPage + 1);
-                  }}
-                  // disabled={currentPage === totalPages}?
-                />
-              )}
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
+          ))}
+          <PaginationItem>
+            {currentPage === totalPages ? (
+              ""
+            ) : (
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  handlePageChange(currentPage + 1);
+                }}
+                // disabled={currentPage === totalPages}?
+              />
+            )}
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </>
   );
 }

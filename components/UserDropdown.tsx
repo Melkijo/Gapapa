@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,17 +15,41 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import proof from "@/assets/hero-proof-1.png";
+import { signOut } from "next-auth/react";
 
-export function UserDropdown() {
+export function UserDropdown({
+  image,
+  fullName,
+}: {
+  image?: string;
+  fullName?: string;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="hover:cursor-pointer hover:opacity-80">
-          <Image src={proof} width={50} height={50} alt="user image" />
+        <div className="hover:cursor-pointer hover:opacity-80 rounded-full overflow-hidden">
+          {image ? (
+            <Image
+              src={image}
+              width={50}
+              height={50}
+              className="object-fit"
+              alt="user image"
+            />
+          ) : (
+            <Image
+              src={proof}
+              width={50}
+              height={50}
+              className="object-fit"
+              alt="user image"
+            />
+          )}
+          {/* <Image src={image} width={50} height={50} alt="user image" /> */}
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Melkijo</DropdownMenuLabel>
+        <DropdownMenuLabel>{fullName}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>Akun</DropdownMenuItem>
@@ -34,10 +58,7 @@ export function UserDropdown() {
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Log out
-          {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => signOut()}>Log out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

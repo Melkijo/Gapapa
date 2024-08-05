@@ -41,7 +41,7 @@ export default function StoryItem({
     <Dialog>
       <DialogTrigger asChild>
         <div
-          className={`w-[250px] h-[160px] ${getBackgroundColor(
+          className={`w-full h-[160px] ${getBackgroundColor(
             mood
           )} flex flex-col justify-between border border-gray-400 rounded-lg px-4 py-4 hover:cursor-pointer`}
         >
