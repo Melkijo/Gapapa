@@ -20,12 +20,14 @@ export default function StoryItem({
   photo,
   story,
   storyDate,
+  recommendation,
 }: {
   email: string;
   feel: string;
   photo: string;
   story: string;
   storyDate: string;
+  recommendation: string;
 }) {
   const getBackgroundColor = (feel: string) => {
     switch (feel) {
@@ -79,7 +81,7 @@ export default function StoryItem({
               <p>{storyDate}</p>
             </div>
           </div>
-          <ScrollArea className="h-[200px] md:h-full w-full rounded-md pe-4">
+          <ScrollArea className="h-[200px] md:h-[500px] w-full rounded-md pe-4">
             <div className="flex flex-col">
               <div className="mb-4">
                 <h5 className="font-semibold">Cerita</h5>
@@ -90,12 +92,7 @@ export default function StoryItem({
               <div>
                 <h5 className="font-semibold">AI</h5>
                 <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
-                  "Kami berkesempatan berbicara dengan Ganiesh, asisten pengajar
-                  bahasa Korea yang telah mencapai level tertinggi dalam ujian
-                  TOPIK (TOPIK 6). Ganiesh membagikan pengalamannya dalam
-                  belajar bahasa Korea dan memberikan berbagai tips serta
-                  strategi yang dapat Anda terapkan untuk belajar bahasa Korea
-                  dengan lebih baik."
+                  {recommendation ? recommendation : "Belum ada rekomendasi"}
                 </p>
               </div>
             </div>

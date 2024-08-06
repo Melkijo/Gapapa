@@ -36,7 +36,7 @@ export default async function UserSidebar({
           </Link>
           <Link href="/1/chart" passHref className="items-center flex gap-4">
             <ChartDashboardIcon />
-            <span>Chart</span>
+            <span>Analisis</span>
           </Link>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default async function UserSidebar({
                   className="items-center flex gap-4"
                 >
                   <ChartDashboardIcon />
-                  <span>Chart</span>
+                  <span>Analisis</span>
                 </Link>
               </div>
             </SheetContent>

@@ -24,6 +24,9 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase";
 import Image from "next/image";
 import { ScrollArea } from "../ui/scroll-area";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { StoryType } from "@/types/storyType";
+import promptProcess from "@/lib/promptProcess";
 
 const formSchema = z.object({
   storyDate: z.string(),
@@ -43,6 +46,7 @@ async function addStory(data: z.infer<typeof formSchema>) {
       story: data.story,
       email: data.email,
       photo: data.photo,
+      recommendation: data.recommendation,
     });
     console.log("Document written with ID: ", docRef.id);
     alert("Story added!");
@@ -88,13 +92,29 @@ export default function ButtonAddStory({ email }: { email: string }) {
     }
   };
 
+  //   const PromptProcess = async (values: z.infer<typeof formSchema>) => {
+  //     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+  //     const prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat atau kata-kata motivasi yang sesuai untuk mengatasi atau memperkuat emosi ini.`;
+  //     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  //     const result = await model.generateContent(prompt);
+
+  //     const response = result.response;
+  //     const text = response.text();
+  //     return text;
+  //   };
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
 
     setLoading(true);
     values.photo = imageUrl;
-    addStory(values);
+    promptProcess(values).then((result) => {
+      values.recommendation = result;
+      addStory(values);
+      setLoading(false);
+    });
   }
 
   return (
