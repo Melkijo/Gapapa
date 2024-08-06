@@ -100,16 +100,18 @@ export default async function Page() {
         {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[200px]">Tanggal</TableHead>
+            <TableHead className=" w-[200px]">Tanggal</TableHead>
             <TableHead>Perasaan</TableHead>
-            <TableHead>Cerita</TableHead>
+            <TableHead className="md:w-auto w-[300px]">Cerita</TableHead>
             {/* <TableHead className="text-right">Amount</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>
           {invoices.map((invoice) => (
             <TableRow key={invoice.tanggal}>
-              <TableCell className="font-medium">{invoice.tanggal}</TableCell>
+              <TableCell className="font-normal md:font-medium">
+                {invoice.tanggal}
+              </TableCell>
               <TableCell>{invoice.perasaan}</TableCell>
               <TableCell>{invoice.cerita}</TableCell>
               {/* <TableCell className="text-right">
