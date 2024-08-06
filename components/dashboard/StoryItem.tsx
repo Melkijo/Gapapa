@@ -79,7 +79,7 @@ export default function StoryItem({
               <p>{storyDate}</p>
             </div>
           </div>
-          <ScrollArea className="h-[200px] w-full rounded-md pe-4">
+          <ScrollArea className="h-[200px] md:h-full w-full rounded-md pe-4">
             <div className="flex flex-col">
               <div className="mb-4">
                 <h5 className="font-semibold">Cerita</h5>

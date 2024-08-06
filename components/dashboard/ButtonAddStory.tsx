@@ -222,7 +222,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
               </form>
             </Form>
           </ScrollArea>
-          <div className="w-full h-full bg-blue-100  rounded-lg flex justify-center items-center">
+          <div className="w-full h-full bg-blue-100  rounded-lg flex justify-center items-center mt-2 mr-2 overflow-hidden">
             <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
           </div>
         </div>
