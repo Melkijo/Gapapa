@@ -4,6 +4,7 @@ type StoryType = {
   photo: string;
   story: string;
   storyDate: string;
+  recommendation: string;
   };
 
   type StoryListProps = {

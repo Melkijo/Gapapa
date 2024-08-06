@@ -5,7 +5,8 @@ const exampleData: StoryType[] = [
         feel: "senang",
         photo: "",
         story: "Hari ini saya senang karena cuaca cerah",
-        storyDate: "2021-08-01"
+        storyDate: "2021-08-01",
+        recommendation: "Tetap semangat!",
     }
       
   ];
