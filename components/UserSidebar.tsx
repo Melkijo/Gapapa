@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChartDashboardIcon, Logo, UtamaDasboardIcon } from "./icon";
+import { ChartDashboardIcon, Logo, MenuIcon, UtamaDasboardIcon } from "./icon";
 import { UserDropdown } from "./UserDropdown";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth";
@@ -41,14 +41,16 @@ export default async function UserSidebar({
         </div>
       </div>
       <div className="w-full pe-0 md:pe-8 pt-4 ">
-        <div className="flex justify-between md:justify-end px-4">
+        <div className="flex justify-between md:justify-end px-4 mb-4 md:mb-0">
           <Sheet>
-            <SheetTrigger className="block md:hidden">Open</SheetTrigger>
+            <SheetTrigger className="block md:hidden hover:bg-gray-100 rounded-md">
+              <MenuIcon />
+            </SheetTrigger>
             <SheetContent side="left">
               <Link href="/" passHref>
                 <Logo />
               </Link>
-              <div className="flex gap-4 flex-col">
+              <div className="flex gap-4 flex-col mt-8">
                 <Link
                   href="/1/dashboard"
                   passHref

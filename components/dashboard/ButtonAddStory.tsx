@@ -103,8 +103,8 @@ export default function ButtonAddStory({ email }: { email: string }) {
         <PlusIcon />
       </DialogTrigger>
       <DialogContent>
-        <div className="flex flex-col-reverse md:flex-row gap-4">
-          <ScrollArea className="h-[400px] w-full rounded-md ">
+        <div className="flex flex-col-reverse md:flex-row gap-4 overflow-hidden">
+          <ScrollArea className="h-[300px] md:h-[400px] w-full rounded-md ">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -120,7 +120,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                         <RadioGroup
                           onValueChange={field.onChange}
                           defaultValue={field.value}
-                          className="flex  space-x-4 space-y-0"
+                          className="flex flex-wrap md:flex-nowrap space-x-4 space-y-0"
                         >
                           <FormItem className="flex items-center justify-center space-x-2 space-y-0">
                             <FormControl>

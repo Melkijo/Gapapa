@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import hero from "@/assets/hero.png";
 import Image from "next/image";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function StoryItem({
   email,
@@ -66,7 +67,7 @@ export default function StoryItem({
                 alt="image"
                 width={400}
                 height={200}
-                className="w-[800px] h-[400px] object-cover rounded-md"
+                className="w-[800px] h-[200px] md:h-[400px] object-cover rounded-md"
               />
             </div>
             <div className="w-full flex justify-between">
@@ -78,25 +79,27 @@ export default function StoryItem({
               <p>{storyDate}</p>
             </div>
           </div>
-          <div className="flex flex-col">
-            <div className="mb-4">
-              <h5 className="font-semibold">Cerita</h5>
-              <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
-                {story}
-              </p>
+          <ScrollArea className="h-[200px] w-full rounded-md pe-4">
+            <div className="flex flex-col">
+              <div className="mb-4">
+                <h5 className="font-semibold">Cerita</h5>
+                <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
+                  {story}
+                </p>
+              </div>
+              <div>
+                <h5 className="font-semibold">AI</h5>
+                <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
+                  "Kami berkesempatan berbicara dengan Ganiesh, asisten pengajar
+                  bahasa Korea yang telah mencapai level tertinggi dalam ujian
+                  TOPIK (TOPIK 6). Ganiesh membagikan pengalamannya dalam
+                  belajar bahasa Korea dan memberikan berbagai tips serta
+                  strategi yang dapat Anda terapkan untuk belajar bahasa Korea
+                  dengan lebih baik."
+                </p>
+              </div>
             </div>
-            <div>
-              <h5 className="font-semibold">AI</h5>
-              <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
-                "Kami berkesempatan berbicara dengan Ganiesh, asisten pengajar
-                bahasa Korea yang telah mencapai level tertinggi dalam ujian
-                TOPIK (TOPIK 6). Ganiesh membagikan pengalamannya dalam belajar
-                bahasa Korea dan memberikan berbagai tips serta strategi yang
-                dapat Anda terapkan untuk belajar bahasa Korea dengan lebih
-                baik."
-              </p>
-            </div>
-          </div>
+          </ScrollArea>
         </div>
       </DialogContent>
     </Dialog>

@@ -57,13 +57,15 @@ export default async function Page() {
   const session = await getServerSession(authConfig);
   return (
     <UserSidebar>
-      <div className="mb-6">
+      <div className="mb-6 px-4">
         <h2 className="font-bold text-2xl">Analisis</h2>
         <p>Cek progres perasaanmu yuks</p>
       </div>
-      <div className="flex gap-20">
-        <div className="w-[300px] rounded-md border border-gray-100 p-6">
-          <h3 className="font-semibold -mb-5 text-lg">Perasaan hari ini</h3>
+      <div className="flex flex-col md:flex-row gap-10 md:gap-20 px-4">
+        <div className="w-full md:w-[300px] rounded-md border border-gray-100 p-6">
+          <h3 className="font-semibold mb-6 md:-mb-5 text-lg">
+            Perasaan hari ini
+          </h3>
           <PieChartComponent />
         </div>
         <div className="space-y-8">
