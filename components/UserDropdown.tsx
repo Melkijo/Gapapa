@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import proof from "@/assets/hero-proof-1.png";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 export function UserDropdown({
   image,
@@ -52,7 +53,9 @@ export function UserDropdown({
         <DropdownMenuLabel>{fullName}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Akun</DropdownMenuItem>
+          <Link href="/1/akun" className="hover:cursor-pointer">
+            <DropdownMenuItem>Akun </DropdownMenuItem>
+          </Link>
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
