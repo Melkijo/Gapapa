@@ -31,6 +31,9 @@ export default async function promptProcess(values: z.infer<typeof formSchema>) 
             case "lebay":
                 prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat yang dilebih lebihkan atau kata-kata motivasi berlebihan yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
                 break;
+            default:
+                prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat atau kata-kata motivasi yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
+                break;
                
         }
         console.log(prompt)

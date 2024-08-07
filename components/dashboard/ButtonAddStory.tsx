@@ -112,7 +112,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (event.target.files && event.target.files[0]) {
-      //   setLoading(true);
+      setLoading(true);
       const file = event.target.files[0];
       const storageRef = ref(storage, `images/${file.name}`);
 
@@ -120,17 +120,17 @@ export default function ButtonAddStory({ email }: { email: string }) {
         await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(storageRef);
         setImageUrl(downloadURL);
-        // setLoading(false);
+        setLoading(false);
       } catch (error) {
         console.error("Error uploading image:", error);
-        // setLoading(false);
+        setLoading(false);
       }
     }
   };
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // setLoading(true);
-    console.log("masuk", value);
+    setLoading(true);
+    // console.log("masuk", value);
     values.photo = imageUrl;
     values.model = value;
     promptProcess(values).then((result) => {
@@ -139,6 +139,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
       addStory(values);
       setLoading(false);
     });
+    // setLoading(false);
   }
 
   return (
@@ -260,7 +261,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={loading}>
                   Kirim
                 </Button>
               </form>
