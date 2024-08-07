@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import Markdown from "react-markdown";
 import {
   Form,
   FormControl,
@@ -268,7 +269,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
           <div className="w-full h-full bg-blue-50  rounded-lg flex justify-center items-center mt-2 mr-2 overflow-hidden px-6">
             {promptResult ? (
               <ScrollArea className="h-[300px] w-full rounded-md">
-                <p>{promptResult}</p>
+                <Markdown>{promptResult}</Markdown>
               </ScrollArea>
             ) : (
               <div className="flex flex-col items-center gap-4">

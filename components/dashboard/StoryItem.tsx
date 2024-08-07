@@ -1,18 +1,9 @@
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import hero from "@/assets/hero.png";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import StoryText from "./StoryText";
+import Markdown from "react-markdown";
 
 export default function StoryItem({
   email,
@@ -64,13 +55,17 @@ export default function StoryItem({
         <div className="flex gap-6 flex-col md:flex-row ">
           <div className="space-y-2 mt-4 md:mt-0">
             <div className="w-full">
-              <Image
-                src={photo}
-                alt="image"
-                width={400}
-                height={200}
-                className="w-[800px] h-[200px] md:h-[400px] object-cover rounded-md"
-              />
+              {photo === "" ? (
+                <div className="w-full md:w-[300px] h-[200px] md:h-[400px] bg-gray-200 rounded-md"></div>
+              ) : (
+                <Image
+                  src={photo}
+                  alt="image"
+                  width={400}
+                  height={200}
+                  className="w-[800px] h-[200px] md:h-[400px] object-cover rounded-md"
+                />
+              )}
             </div>
             <div className="w-full flex justify-between">
               <h5 className="font-semibold">Perasaan:</h5>
@@ -85,15 +80,13 @@ export default function StoryItem({
             <div className="flex flex-col">
               <div className="mb-4">
                 <h5 className="font-semibold">Cerita</h5>
-                <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
-                  {story}
-                </p>
+                <StoryText text={story} />
               </div>
               <div>
                 <h5 className="font-semibold">AI</h5>
-                <p className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
+                <Markdown className="w-full border border-gray-100 bg-gray-50 py-2 px-4 rounded-md mt-2">
                   {recommendation ? recommendation : "Belum ada rekomendasi"}
-                </p>
+                </Markdown>
               </div>
             </div>
           </ScrollArea>

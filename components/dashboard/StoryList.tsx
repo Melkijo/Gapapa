@@ -5,13 +5,12 @@ import StoryItem from "./StoryItem";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { StoryListProps, StoryType } from "@/types/storyType";
+import { StoryType } from "@/types/storyType";
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -43,7 +42,6 @@ export default function StoryList({ email }: { email: string }) {
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
-    console.log(currentPage);
   };
 
   const displayedStories = userStories.slice(
