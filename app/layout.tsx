@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import SessionProvider from "./SessionProvider";
-
+import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "gapapa | Bantuan AI untuk mental",
   description: "Bantuan AI untuk mental",
@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={satoshi.className}>
         <SessionProvider>{children}</SessionProvider>
+        <Toaster />
       </body>
     </html>
   );

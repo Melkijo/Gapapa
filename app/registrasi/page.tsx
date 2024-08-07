@@ -4,7 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import daftar from "@/assets/daftar.png";
 import { GoogleSignInButton } from "@/components/AuthButtons";
-export default function Page() {
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/lib/auth";
+import { redirect } from "next/navigation";
+export default async function Page() {
+  const session = await getServerSession(authConfig);
+
+  console.log("Session: ", session);
+
+  if (session) return redirect("/1/dashboard");
   return (
     <>
       <Navbar />

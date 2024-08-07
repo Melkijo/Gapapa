@@ -50,7 +50,6 @@ export default function StoryList({ email }: { email: string }) {
     (currentPage - 1) * storiesPerPage,
     currentPage * storiesPerPage
   );
-  //   console.log(displayedStories);
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -1,6 +1,5 @@
 "use client";
 import { PlusIcon } from "@/components/icon";
-
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -17,35 +16,66 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
-import { db } from "@/lib/firebase";
+import { db, storage } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "@/lib/firebase";
 import Image from "next/image";
 import { ScrollArea } from "../ui/scroll-area";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { StoryType } from "@/types/storyType";
 import promptProcess from "@/lib/promptProcess";
+
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+const frameworks = [
+  {
+    value: "standar",
+    label: "standar",
+  },
+  {
+    value: "pemarah",
+    label: "pemarah",
+  },
+  {
+    value: "tidak peduli",
+    label: "tidak peduli",
+  },
+  {
+    value: "lebay",
+    label: "lebay",
+  },
+];
 
 const formSchema = z.object({
   storyDate: z.string(),
+  storyTime: z.string(),
   feel: z.string(),
   story: z.string(),
   photo: z.any(),
   recommendation: z.string(),
   email: z.string(),
+  model: z.string(),
 });
 
 async function addStory(data: z.infer<typeof formSchema>) {
-  console.log(data);
   try {
     const docRef = await addDoc(collection(db, data.email), {
       storyDate: data.storyDate,
+      StoryItem: data.storyTime,
       feel: data.feel,
       story: data.story,
       email: data.email,
       photo: data.photo,
+      model: data.model,
       recommendation: data.recommendation,
     });
     console.log("Document written with ID: ", docRef.id);
@@ -59,16 +89,21 @@ async function addStory(data: z.infer<typeof formSchema>) {
 export default function ButtonAddStory({ email }: { email: string }) {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [promptResult, setPromptResult] = useState("");
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       storyDate: new Date().toDateString(),
+      storyTime: new Date().toTimeString(),
       recommendation: "",
       feel: "netral",
       story: "",
       photo: "",
       email: email,
+      model: "standar",
     },
   });
 
@@ -76,7 +111,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (event.target.files && event.target.files[0]) {
-      setLoading(true);
+      //   setLoading(true);
       const file = event.target.files[0];
       const storageRef = ref(storage, `images/${file.name}`);
 
@@ -84,34 +119,22 @@ export default function ButtonAddStory({ email }: { email: string }) {
         await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(storageRef);
         setImageUrl(downloadURL);
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.error("Error uploading image:", error);
-        setLoading(false);
+        // setLoading(false);
       }
     }
   };
 
-  //   const PromptProcess = async (values: z.infer<typeof formSchema>) => {
-  //     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-  //     const prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat atau kata-kata motivasi yang sesuai untuk mengatasi atau memperkuat emosi ini.`;
-  //     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  //     const result = await model.generateContent(prompt);
-
-  //     const response = result.response;
-  //     const text = response.text();
-  //     return text;
-  //   };
-
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
-    setLoading(true);
+    // setLoading(true);
+    console.log("masuk", value);
     values.photo = imageUrl;
+    values.model = value;
     promptProcess(values).then((result) => {
       values.recommendation = result;
+      setPromptResult(result);
       addStory(values);
       setLoading(false);
     });
@@ -236,14 +259,60 @@ export default function ButtonAddStory({ email }: { email: string }) {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button type="submit" className="w-full">
                   Kirim
                 </Button>
               </form>
             </Form>
           </ScrollArea>
-          <div className="w-full h-full bg-blue-100  rounded-lg flex justify-center items-center mt-2 mr-2 overflow-hidden">
-            <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
+          <div className="w-full h-full bg-blue-50  rounded-lg flex justify-center items-center mt-2 mr-2 overflow-hidden px-6">
+            {promptResult ? (
+              <ScrollArea className="h-[300px] w-full rounded-md">
+                <p>{promptResult}</p>
+              </ScrollArea>
+            ) : (
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="w-[200px] justify-between"
+                    >
+                      {value
+                        ? frameworks.find(
+                            (framework) => framework.value === value
+                          )?.label
+                        : frameworks[0].value}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] p-0">
+                    <Command>
+                      <CommandList>
+                        <CommandGroup>
+                          {frameworks.map((framework) => (
+                            <CommandItem
+                              key={framework.value}
+                              value={framework.value}
+                              onSelect={(currentValue) => {
+                                setValue(
+                                  currentValue === value ? "" : currentValue
+                                );
+                                setOpen(false);
+                              }}
+                            >
+                              {framework.label}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </div>
+            )}
           </div>
         </div>
       </DialogContent>

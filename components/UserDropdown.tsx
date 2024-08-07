@@ -5,12 +5,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
@@ -21,10 +16,10 @@ import Link from "next/link";
 export function UserDropdown({
   image,
   fullName,
-}: {
+}: Readonly<{
   image?: string;
   fullName?: string;
-}) {
+}>) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,16 +27,16 @@ export function UserDropdown({
           {image ? (
             <Image
               src={image}
-              width={50}
-              height={50}
+              width={45}
+              height={45}
               className="object-fit"
               alt="user image"
             />
           ) : (
             <Image
               src={proof}
-              width={50}
-              height={50}
+              width={45}
+              height={45}
               className="object-fit"
               alt="user image"
             />
