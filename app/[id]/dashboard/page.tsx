@@ -1,10 +1,8 @@
 import UserSidebar from "@/components/UserSidebar";
 import ButtonAddStory from "@/components/dashboard/ButtonAddStory";
 import StoryList from "@/components/dashboard/StoryList";
-import { exampleData } from "@/data/dummyData";
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
 export default async function Page() {
   await loginIsRequiredServer();
 
