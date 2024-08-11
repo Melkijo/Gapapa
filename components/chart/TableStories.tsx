@@ -86,7 +86,7 @@ export default function TableStories({
                 <p className="line-clamp-2 ">{item.story}</p>
               </TableCell>
               <TableCell>
-                <div className="flex gap-2 md:gap-4 ">
+                <div className="flex gap-2 flex-col md:flex-row md:gap-4 ">
                   <Dialog>
                     <DialogTrigger className={buttonVariants()}>
                       Lihat
