@@ -6,14 +6,21 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import DominanChart from "@/components/chart/DominanChart";
 import TableStories from "@/components/chart/TableStories";
+import { StoryType } from "@/types/storyType";
 
 async function getStories({ email }: { email: string }) {
   const querySnapshot = await getDocs(collection(db, email));
-  const data: Array<{ id: string; [key: string]: any }> = [];
+  const data: Array<StoryType> = [];
 
   querySnapshot.forEach((doc) => {
     data.push({
       id: doc.id,
+      email: "",
+      feel: "",
+      photo: "",
+      story: "",
+      storyDate: "", // Add the storyDate property
+      recommendation: "", // Add the recommendation property
       ...doc.data(),
     });
   });

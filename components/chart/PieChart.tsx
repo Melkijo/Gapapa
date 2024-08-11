@@ -4,7 +4,7 @@ import { StoryType } from "@/types/storyType";
 
 export default function PieChartComponent({ data }: { data: StoryType[] }) {
   //get the sum of every data feel
-  const dominantFeeling = data.reduce((acc, curr) => {
+  const dominantFeeling = data.reduce((acc: any, curr) => {
     const feeling = curr.feel;
     acc[feeling] = acc[feeling] ? acc[feeling] + 1 : 1;
     return acc;
