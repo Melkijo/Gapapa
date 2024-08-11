@@ -9,9 +9,13 @@ import TableStories from "@/components/chart/TableStories";
 
 async function getStories({ email }: { email: string }) {
   const querySnapshot = await getDocs(collection(db, email));
-  const data: any[] = [];
+  const data: Array<{ id: string; [key: string]: any }> = [];
+
   querySnapshot.forEach((doc) => {
-    data.push(doc.data());
+    data.push({
+      id: doc.id,
+      ...doc.data(),
+    });
   });
   return data;
 }
@@ -20,6 +24,7 @@ export default async function Page() {
 
   const session = await getServerSession(authConfig);
   const stories = await getStories({ email: session?.user?.email ?? "" });
+
   return (
     <UserSidebar>
       <div className="mb-6 px-4">
@@ -28,17 +33,14 @@ export default async function Page() {
       </div>
       <div className="flex flex-col md:flex-row gap-10 md:gap-20 px-4">
         <div className="w-full md:w-[300px] rounded-md border border-gray-100 p-6">
-          <h3 className="font-semibold mb-6 md:-mb-5 text-lg">
-            Perasaan hari ini
-          </h3>
-          <PieChartComponent />
+          <PieChartComponent data={stories} />
         </div>
-        <DominanChart />
+        <DominanChart data={stories} />
       </div>
 
       <div className="my-4">
         <hr />
-        <TableStories data={stories} />
+        <TableStories data={stories} email={session?.user?.email ?? ""} />
       </div>
     </UserSidebar>
   );

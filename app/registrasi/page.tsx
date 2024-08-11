@@ -1,4 +1,4 @@
-import { FacebookIcon, GoogleIcon } from "@/components/icon";
+import { FacebookIcon } from "@/components/icon";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import Link from "next/link";

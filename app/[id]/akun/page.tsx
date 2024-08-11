@@ -1,3 +1,4 @@
+import HapusAkunButton from "@/components/akun/HapusAkunButton";
 import { Button } from "@/components/ui/button";
 import UserSidebar from "@/components/UserSidebar";
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
@@ -22,9 +23,7 @@ export default async function Page() {
           <h1 className="text-2xl font-bold mb-2">{session?.user?.name}</h1>
           <p className="text-lg text-gray-500">{session?.user?.email}</p>
           <div className="w-full">
-            <Button className="mt-4 w-full " variant="destructive">
-              Hapus akun
-            </Button>
+            {/* <HapusAkunButton email={session?.user?.email || ""} /> */}
           </div>
         </div>
       </div>

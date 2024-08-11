@@ -43,8 +43,12 @@ export default function StoryList({ email }: { email: string }) {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+  // Sort the data by date in descending order
+  const sortedData = [...userStories].sort(
+    (a, b) => new Date(b.storyDate).getTime() - new Date(a.storyDate).getTime()
+  );
 
-  const displayedStories = userStories.slice(
+  const displayedStories = sortedData.slice(
     (currentPage - 1) * storiesPerPage,
     currentPage * storiesPerPage
   );

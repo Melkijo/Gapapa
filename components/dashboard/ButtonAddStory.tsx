@@ -24,18 +24,23 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 import { ScrollArea } from "../ui/scroll-area";
 import promptProcess from "@/lib/promptProcess";
-
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import {
   Command,
   CommandGroup,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import standar from "@/assets/model/standar.png";
+import marah from "@/assets/model/marah.png";
+import tidakPeduli from "@/assets/model/tidakPeduli.png";
+import lebay from "@/assets/model/lebay.png";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 const frameworks = [
   {
@@ -60,7 +65,7 @@ const formSchema = z.object({
   storyDate: z.string(),
   storyTime: z.string(),
   feel: z.string(),
-  story: z.string(),
+  story: z.string().min(10),
   photo: z.any(),
   recommendation: z.string(),
   email: z.string(),
@@ -92,7 +97,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
   const [imageUrl, setImageUrl] = useState("");
   const [promptResult, setPromptResult] = useState("");
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [model, setModel] = useState("standar");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -132,7 +137,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
     setLoading(true);
     // console.log("masuk", value);
     values.photo = imageUrl;
-    values.model = value;
+    values.model = model;
     promptProcess(values).then((result) => {
       values.recommendation = result;
       setPromptResult(result);
@@ -165,7 +170,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                         <RadioGroup
                           onValueChange={field.onChange}
                           defaultValue={field.value}
-                          className="flex flex-wrap md:flex-nowrap space-x-4 space-y-0"
+                          className="flex flex-wrap  space-x-4 space-y-0"
                         >
                           <FormItem className="flex items-center justify-center space-x-2 space-y-0">
                             <FormControl>
@@ -238,7 +243,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                   name="photo"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>PAP dulu nga si</FormLabel>
+                      <FormLabel>PAP dulu nga si (optional)</FormLabel>
                       {imageUrl && (
                         <Image
                           src={imageUrl}
@@ -269,12 +274,49 @@ export default function ButtonAddStory({ email }: { email: string }) {
           </ScrollArea>
           <div className="w-full h-full bg-blue-50  rounded-lg flex justify-center items-center mt-2 mr-2 overflow-hidden px-6">
             {promptResult ? (
-              <ScrollArea className="h-[300px] w-full rounded-md">
+              <ScrollArea className="h-[350px] w-full rounded-md">
+                <div className="flex justify-center mb-2">
+                  {model === "standar" ? (
+                    //   <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
+                    <Image
+                      src={standar}
+                      alt="standar"
+                      width={120}
+                      height={120}
+                    />
+                  ) : model === "pemarah" ? (
+                    <Image src={marah} alt="marah" width={80} height={80} />
+                  ) : model === "tidak peduli" ? (
+                    <Image
+                      src={tidakPeduli}
+                      alt="tidak peduli"
+                      width={80}
+                      height={80}
+                    />
+                  ) : model === "lebay" ? (
+                    <Image src={lebay} alt="lebay" width={80} height={80} />
+                  ) : null}
+                </div>
                 <Markdown>{promptResult}</Markdown>
               </ScrollArea>
             ) : (
               <div className="flex flex-col items-center gap-4">
-                <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
+                <h1 className="text-2xl font-bold">Model AI</h1>
+                {model === "standar" ? (
+                  //   <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
+                  <Image src={standar} alt="standar" width={120} height={120} />
+                ) : model === "pemarah" ? (
+                  <Image src={marah} alt="standar" width={120} height={120} />
+                ) : model === "tidak peduli" ? (
+                  <Image
+                    src={tidakPeduli}
+                    alt="standar"
+                    width={120}
+                    height={120}
+                  />
+                ) : model === "lebay" ? (
+                  <Image src={lebay} alt="standar" width={120} height={120} />
+                ) : null}
                 <Popover open={open} onOpenChange={setOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -283,14 +325,15 @@ export default function ButtonAddStory({ email }: { email: string }) {
                       aria-expanded={open}
                       className="w-[200px] justify-between"
                     >
-                      {value
+                      {model
                         ? frameworks.find(
-                            (framework) => framework.value === value
+                            (framework) => framework.value === model
                           )?.label
                         : frameworks[0].value}
+                      <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-[200px] p-0">
+                  <PopoverContent className="w-[180px] p-0">
                     <Command>
                       <CommandList>
                         <CommandGroup>
@@ -299,13 +342,23 @@ export default function ButtonAddStory({ email }: { email: string }) {
                               key={framework.value}
                               value={framework.value}
                               onSelect={(currentValue) => {
-                                setValue(
-                                  currentValue === value ? "" : currentValue
+                                setModel(
+                                  currentValue === model
+                                    ? "standar"
+                                    : currentValue
                                 );
                                 setOpen(false);
                               }}
                             >
                               {framework.label}
+                              <CheckIcon
+                                className={cn(
+                                  "ml-auto h-4 w-4",
+                                  model === framework.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
                             </CommandItem>
                           ))}
                         </CommandGroup>

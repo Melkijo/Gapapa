@@ -1,4 +1,5 @@
 type StoryType = {
+    id: string;
     email: string;
   feel: string;
   photo: string;
