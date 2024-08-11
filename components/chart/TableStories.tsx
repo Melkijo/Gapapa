@@ -57,8 +57,6 @@ export default function TableStories({
   };
 
   const handleDeleteStory = (id: string) => {
-    console.log(id);
-    console.log(email);
     const docRef = doc(db, email, id);
     deleteDoc(docRef);
   };

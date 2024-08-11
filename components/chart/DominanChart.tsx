@@ -1,5 +1,6 @@
 import { StoryType } from "@/types/storyType";
 import { Progress } from "../ui/progress";
+import { ReactNode } from "react";
 
 export default function DominanChart({ data }: { data: StoryType[] }) {
   //get the most dominant feeling
@@ -10,8 +11,8 @@ export default function DominanChart({ data }: { data: StoryType[] }) {
   }, {});
 
   //addition the dominantFeeling value
-  const totalSum = Object.values(dominantFeeling).reduce(
-    (sum: any, value) => sum + value,
+  const totalSum: number = (Object.values(dominantFeeling) as number[]).reduce(
+    (sum: number, value: number) => sum + value,
     0
   );
 
@@ -35,7 +36,7 @@ export default function DominanChart({ data }: { data: StoryType[] }) {
             <div key={i}>
               <div className="flex justify-between">
                 <p>{emotion}</p>
-                <p>{value}</p>
+                <p>{value as ReactNode}</p>
               </div>
               <Progress
                 value={Math.floor(((value as number) * 100) / totalSum)}
