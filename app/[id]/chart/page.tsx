@@ -21,6 +21,7 @@ async function getStories({ email }: { email: string }) {
       story: "",
       storyDate: "", // Add the storyDate property
       recommendation: "", // Add the recommendation property
+      model: "", // Add the model property
       ...doc.data(),
     });
   });
