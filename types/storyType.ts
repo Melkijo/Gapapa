@@ -6,6 +6,7 @@ type StoryType = {
   story: string;
   storyDate: string;
   recommendation: string;
+  model:string;
   };
 
   type StoryListProps = {

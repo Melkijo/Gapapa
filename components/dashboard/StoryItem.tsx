@@ -4,7 +4,10 @@ import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import StoryText from "./StoryText";
 import Markdown from "react-markdown";
-
+import standar from "@/assets/model/standar.png";
+import marah from "@/assets/model/marah.png";
+import tidakPeduli from "@/assets/model/tidakPeduli.png";
+import lebay from "@/assets/model/lebay.png";
 export default function StoryItem({
   email,
   feel,
@@ -12,6 +15,7 @@ export default function StoryItem({
   story,
   storyDate,
   recommendation,
+  model,
 }: {
   email: string;
   feel: string;
@@ -19,20 +23,21 @@ export default function StoryItem({
   story: string;
   storyDate: string;
   recommendation: string;
+  model: string;
 }) {
   const getBackgroundColor = (feel: string) => {
     switch (feel) {
       case "senang":
-        return "bg-red-500 hover:bg-red-600";
+        return "bg-[#F9FD50] hover:bg-yellow-300";
       case "sedikit senang":
-        return "bg-red-400 hover:bg-red-500";
+        return "bg-yellow-200 hover:bg-yellow-300";
       case "sedih":
-        return "bg-blue-500 hover:bg-blue-600";
+        return "bg-[#207DFF] hover:bg-blue-600";
       case "sedikit sedih":
         return "bg-blue-400 hover:bg-blue-500";
 
       default:
-        return "bg-gray-200 hover:bg-gray-300"; // Default background color
+        return "bg-[#85EF47] hover:bg-green-500";
     }
   };
   return (
@@ -41,13 +46,29 @@ export default function StoryItem({
         <div
           className={`w-full h-[160px] ${getBackgroundColor(
             feel
-          )} flex flex-col justify-between border border-gray-400 rounded-lg px-4 py-4 hover:cursor-pointer`}
+          )} flex flex-col justify-between  rounded-lg px-4 py-4 hover:cursor-pointer`}
         >
           <div>
-            <p>{storyDate}</p>
+            <p className="font-semibold">{storyDate}</p>
           </div>
-          <div>
+          <div className="flex justify-between items-center">
             <p>{feel}</p>
+            {model === "standar" ? (
+              <Image src={standar} alt="standar" width={50} height={50} />
+            ) : model === "pemarah" ? (
+              <Image src={marah} alt="marah" width={50} height={50} />
+            ) : model === "tidak peduli" ? (
+              <Image
+                src={tidakPeduli}
+                alt="tidak peduli"
+                width={50}
+                height={50}
+              />
+            ) : model === "lebay" ? (
+              <Image src={lebay} alt="lebay" width={50} height={50} />
+            ) : (
+              <Image src={standar} alt="standar" width={50} height={50} />
+            )}
           </div>
         </div>
       </DialogTrigger>

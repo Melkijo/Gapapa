@@ -149,8 +149,13 @@ export default function ButtonAddStory({ email }: { email: string }) {
 
   return (
     <Dialog>
-      <DialogTrigger className="w-full md:w-[250px] h-[160px] bg-gray-200 flex justify-center items-center border border-gray-400 rounded-lg hover:bg-gray-300">
-        <PlusIcon />
+      <DialogTrigger className="w-full md:w-[270px] h-[170px] bg-white flex justify-center items-center border border-gray-200 rounded-lg hover:bg-gray-100">
+        <div className="flex gap-2 justify-center flex-col items-center">
+          <div className="p-4 rounded-full bg-yellow-200">
+            <PlusIcon />
+          </div>
+          <p className="font-semibold">Tambah cerita</p>
+        </div>
       </DialogTrigger>
       <DialogContent>
         <div className="flex flex-col-reverse md:flex-row gap-4 overflow-hidden">

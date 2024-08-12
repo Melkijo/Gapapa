@@ -10,7 +10,7 @@ export default async function Page() {
   return (
     <UserSidebar>
       <div className="mb-6 px-4">
-        <h2 className="font-bold text-2xl">
+        <h2 className="font-bold text-2xl mb-2">
           Bagaimana hari ini {session?.user?.name}?
         </h2>
         <p>Cerita aja yaa, jangan di pendem pendem</p>
