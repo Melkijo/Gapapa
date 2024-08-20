@@ -10,8 +10,6 @@ import { redirect } from "next/navigation";
 export default async function Page() {
   const session = await getServerSession(authConfig);
 
-  console.log("Session: ", session);
-
   if (session) return redirect("/1/dashboard");
   return (
     <>
@@ -19,13 +17,13 @@ export default async function Page() {
       <div className="container">
         <div className="flex gap-10 md:gap-20 items-center flex-col-reverse md:flex-row">
           <div className="w-full md:w-[500px]">
-            <h2 className="text-2xl font-bold text-center mb-4">Masuk</h2>
+            <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
             <div className="flex flex-col  gap-2">
               <GoogleSignInButton />
-              <div className="flex gap-4 items-center border border-gray-300 rounded-lg py-2  justify-center hover:bg-gray-200">
+              {/* <div className="flex gap-4 items-center border border-gray-300 rounded-lg py-2  justify-center hover:bg-gray-200">
                 <FacebookIcon />
                 <p className="font-medium">Masuk dengan Facebook</p>
-              </div>
+              </div> */}
               {/* <Link href="/1/dashboard">
                 <div className="flex gap-4 items-center border border-gray-300 rounded-lg py-2 px-[100px] justify-center hover:bg-gray-200">
                   <p className="font-medium">Masuk </p>
@@ -34,12 +32,12 @@ export default async function Page() {
             </div>
             <div className="flex justify-center mt-4 pb-10">
               <p>
-                Belum punya akun?{" "}
+                Dont have an account?{" "}
                 <Link
                   href="/registrasi"
                   className=" underline hover:font-medium"
                 >
-                  Daftar
+                  Sign up
                 </Link>
               </p>
             </div>

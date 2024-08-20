@@ -49,7 +49,7 @@ export function UserDropdown({
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <Link href="/1/akun" className="hover:cursor-pointer">
-            <DropdownMenuItem>Akun </DropdownMenuItem>
+            <DropdownMenuItem>Account </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
 

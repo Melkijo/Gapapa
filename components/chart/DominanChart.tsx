@@ -24,13 +24,19 @@ export default function DominanChart({ data }: { data: StoryType[] }) {
   return (
     <div className="space-y-8">
       <div className="border border-gray-100 p-6 rounded-md">
-        <h3 className="font-semibold mb-2 text-lg">Paling dominan hari ini</h3>
+        <h3 className="font-semibold mb-2 text-lg">Most dominant feeling</h3>
         <div className="w-[100px] h-[100px] rounded-full bg-red-400 flex justify-center items-center text-white text-center">
-          {feeling} = {max}
+          {feeling ? (
+            <p>
+              {feeling} = {max}
+            </p>
+          ) : (
+            "No data"
+          )}
         </div>
       </div>
       <div className="border border-gray-100 p-6 rounded-md">
-        <h3 className="font-semibold mb-2 text-lg">Perasaan </h3>
+        <h3 className="font-semibold mb-2 text-lg">Feel </h3>
         <div className="space-y-4">
           {Object.entries(dominantFeeling).map(([emotion, value], i) => (
             <div key={i}>

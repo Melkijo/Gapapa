@@ -11,9 +11,9 @@ export default async function Page() {
     <UserSidebar>
       <div className="mb-6 px-4">
         <h2 className="font-bold text-2xl mb-2">
-          Bagaimana hari ini {session?.user?.name}?
+          How is today {session?.user?.name}?
         </h2>
-        <p>Cerita aja yaa, jangan di pendem pendem</p>
+        <p>Just tell me, don't keep it bottled up.</p>
       </div>
       <div className="px-4">
         <ButtonAddStory email={session?.user?.email || ""} />

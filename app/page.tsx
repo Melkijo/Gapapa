@@ -12,8 +12,6 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const session = await getServerSession(authConfig);
 
-  console.log("Session: ", session);
-
   if (session) return redirect("/1/dashboard");
   return (
     <>
@@ -22,12 +20,11 @@ export default async function Home() {
         <div className="flex md:flex-row flex-col-reverse items-center pb-10 pt-6">
           <div className="w-full md:w-[750px]">
             <h1 className=" font-extrabold text-4xl md:text-hero leading-snug text-main-black">
-              Jangan dipendem mulu{" "}
-              <span className="text-main-yellow">Mending cerita</span>
+              Don't keep it to yourself{" "}
+              <span className="text-main-yellow">Better tell a story</span>
             </h1>
             <p className="text-gray-500 text-base md:text-lg font-medium mt-4 mb-6 w-full md:w-[600px]">
-              Ceritakan keseharianmu dan dapatkan saran dari AI yang sudah
-              dipersonalisasi untukmu!
+              Tell us about your daily life and get personalized AI advice!
             </p>
             <Button
               asChild
@@ -35,7 +32,7 @@ export default async function Home() {
               className="font-medium text-lg w-full md:w-auto"
               size={"hero"}
             >
-              <Link href="/registrasi">Mulai gratis</Link>
+              <Link href="/registrasi">Try free</Link>
             </Button>
             <div className="flex gap-12 md:gap-5 mt-7 items-center md:items-center">
               <div className="flex -space-x-2">
@@ -44,7 +41,7 @@ export default async function Home() {
                 <Image src={heroProof3} width={45} height={45} alt="hero" />
               </div>
               <p className="text-gray-500 text-sm md:text-base font-medium ">
-                Bergabung bersama 100+ pengguna lainnya
+                Join 100+ other users
               </p>
             </div>
           </div>

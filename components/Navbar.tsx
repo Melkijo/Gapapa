@@ -30,7 +30,7 @@ export default function Navbar() {
             <NavigationMenuItem>
               <Link href="/masuk" legacyBehavior passHref>
                 <NavigationMenuLink className="py-2 px-4 hover:bg-gray-200 rounded-sm">
-                  Masuk
+                  Login
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -40,7 +40,7 @@ export default function Navbar() {
                 href="registrasi"
                 className="py-2.5 px-4 bg-main-yellow hover:bg-yellow-400 text-main-black rounded-sm"
               >
-                Mulai gratis
+                Try free
               </Link>
             </NavigationMenuItem>
           </NavigationMenuList>

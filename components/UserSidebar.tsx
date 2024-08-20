@@ -11,7 +11,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { usePathname } from "next/navigation";
 import SidebarItem from "./SidebarItem";
 export default async function UserSidebar({
   children,
@@ -40,7 +39,7 @@ export default async function UserSidebar({
                   className="items-center flex gap-4"
                 >
                   <UtamaDasboardIcon color="#716B6D" />
-                  <span>Utama</span>
+                  <span>Main</span>
                 </Link>
                 <Link
                   href="/1/chart"
@@ -48,7 +47,7 @@ export default async function UserSidebar({
                   className="items-center flex gap-4"
                 >
                   <ChartDashboardIcon color="#716B6D" />
-                  <span>Analitik</span>
+                  <span>analytic</span>
                 </Link>
               </div>
             </SheetContent>

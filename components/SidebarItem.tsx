@@ -27,7 +27,7 @@ export default function SidebarItem() {
               color={isActive("/1/dashboard") ? "#207DFF" : "#716B6D"}
             />
 
-            <span className="font-semibold">Utama</span>
+            <span className="font-semibold">Main</span>
           </Link>
           <Link
             href="/1/chart"
@@ -40,7 +40,7 @@ export default function SidebarItem() {
               color={isActive("/1/chart") ? "#207DFF" : "#716B6D"}
             />
 
-            <span className="font-semibold">Analitik</span>
+            <span className="font-semibold">Analytic</span>
           </Link>
         </div>
       </div>

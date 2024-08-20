@@ -27,13 +27,13 @@ export default function StoryItem({
 }) {
   const getBackgroundColor = (feel: string) => {
     switch (feel) {
-      case "senang":
+      case "happy":
         return "bg-[#F9FD50] hover:bg-yellow-300";
-      case "sedikit senang":
+      case "little happy":
         return "bg-yellow-200 hover:bg-yellow-300";
-      case "sedih":
+      case "sad":
         return "bg-[#207DFF] hover:bg-blue-600";
-      case "sedikit sedih":
+      case "little sad":
         return "bg-blue-400 hover:bg-blue-500";
 
       default:
@@ -55,16 +55,16 @@ export default function StoryItem({
             <p>{feel}</p>
             {model === "standar" ? (
               <Image src={standar} alt="standar" width={50} height={50} />
-            ) : model === "pemarah" ? (
+            ) : model === "angry" ? (
               <Image src={marah} alt="marah" width={50} height={50} />
-            ) : model === "tidak peduli" ? (
+            ) : model === "ignorance" ? (
               <Image
                 src={tidakPeduli}
                 alt="tidak peduli"
                 width={50}
                 height={50}
               />
-            ) : model === "lebay" ? (
+            ) : model === "overreacting" ? (
               <Image src={lebay} alt="lebay" width={50} height={50} />
             ) : (
               <Image src={standar} alt="standar" width={50} height={50} />
@@ -89,18 +89,18 @@ export default function StoryItem({
               )}
             </div>
             <div className="w-full flex justify-between">
-              <h5 className="font-semibold">Perasaan:</h5>
+              <h5 className="font-semibold">Feel:</h5>
               <p>{feel}</p>
             </div>
             <div className="w-full flex justify-between">
-              <h5 className="font-semibold">Tanggal:</h5>
+              <h5 className="font-semibold">Date:</h5>
               <p>{storyDate}</p>
             </div>
           </div>
           <ScrollArea className="h-[200px] md:h-[500px] w-full rounded-md pe-4">
             <div className="flex flex-col">
               <div className="mb-4">
-                <h5 className="font-semibold">Cerita</h5>
+                <h5 className="font-semibold">Story</h5>
                 <StoryText text={story} />
               </div>
               <div>

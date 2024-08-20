@@ -4,8 +4,8 @@ import localFont from "next/font/local";
 import SessionProvider from "./SessionProvider";
 import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
-  title: "gapapa | Bantuan AI untuk mental",
-  description: "Bantuan AI untuk mental",
+  title: "GApapa | AI journaling feedback",
+  description: "AI journaling feedback",
 };
 
 const satoshi = localFont({

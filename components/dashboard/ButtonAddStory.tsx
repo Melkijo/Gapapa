@@ -48,16 +48,16 @@ const frameworks = [
     label: "standar",
   },
   {
-    value: "pemarah",
-    label: "pemarah",
+    value: "angry",
+    label: "angry",
   },
   {
-    value: "tidak peduli",
-    label: "tidak peduli",
+    value: "ignorance",
+    label: "ignorance",
   },
   {
-    value: "lebay",
-    label: "lebay",
+    value: "overreacting",
+    label: "overreacting",
   },
 ];
 
@@ -154,7 +154,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
           <div className="p-4 rounded-full bg-yellow-200">
             <PlusIcon />
           </div>
-          <p className="font-semibold">Tambah cerita</p>
+          <p className="font-semibold">Add story</p>
         </div>
       </DialogTrigger>
       <DialogContent>
@@ -170,7 +170,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                   name="feel"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Bagaimana perasaanmu</FormLabel>
+                      <FormLabel>How you feel?</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -179,18 +179,18 @@ export default function ButtonAddStory({ email }: { email: string }) {
                         >
                           <FormItem className="flex items-center justify-center space-x-2 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value="sedih" />
+                              <RadioGroupItem value="sad" />
                             </FormControl>
-                            <FormLabel className="font-normal">Sedih</FormLabel>
+                            <FormLabel className="font-normal">sad</FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center  justify-center   space-x-2 space-y-0">
                             <div>
                               <FormControl>
-                                <RadioGroupItem value="sedikit sedih" />
+                                <RadioGroupItem value="little sad" />
                               </FormControl>
                             </div>
                             <FormLabel className="font-normal">
-                              Sedikit sedih
+                              little sad
                             </FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center justify-center   space-x-2 space-y-0">
@@ -204,20 +204,18 @@ export default function ButtonAddStory({ email }: { email: string }) {
                           <FormItem className="flex items-center  justify-center  space-x-2 space-y-0">
                             <div>
                               <FormControl>
-                                <RadioGroupItem value="sedikit senang" />
+                                <RadioGroupItem value="little happy" />
                               </FormControl>
                             </div>
                             <FormLabel className="font-normal">
-                              Sedikit senang
+                              little happy
                             </FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center justify-center   space-x-2 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value="senang" />
+                              <RadioGroupItem value="happy" />
                             </FormControl>
-                            <FormLabel className="font-normal">
-                              senang
-                            </FormLabel>
+                            <FormLabel className="font-normal">happy</FormLabel>
                           </FormItem>
                         </RadioGroup>
                       </FormControl>
@@ -230,10 +228,10 @@ export default function ButtonAddStory({ email }: { email: string }) {
                   name="story"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Ceritakan</FormLabel>
+                      <FormLabel>My story</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Pada suatu hari..."
+                          placeholder="Once upon a time..."
                           className="resize-none"
                           {...field}
                         />
@@ -248,7 +246,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                   name="photo"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>PAP dulu nga si (optional)</FormLabel>
+                      <FormLabel>Documentation (optional)</FormLabel>
                       {imageUrl && (
                         <Image
                           src={imageUrl}
@@ -272,7 +270,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
                   )}
                 />
                 <Button type="submit" className="w-full" disabled={loading}>
-                  Kirim
+                  Save
                 </Button>
               </form>
             </Form>
@@ -289,16 +287,16 @@ export default function ButtonAddStory({ email }: { email: string }) {
                       width={120}
                       height={120}
                     />
-                  ) : model === "pemarah" ? (
+                  ) : model === "angry" ? (
                     <Image src={marah} alt="marah" width={80} height={80} />
-                  ) : model === "tidak peduli" ? (
+                  ) : model === "ignorance" ? (
                     <Image
                       src={tidakPeduli}
                       alt="tidak peduli"
                       width={80}
                       height={80}
                     />
-                  ) : model === "lebay" ? (
+                  ) : model === "overreacting" ? (
                     <Image src={lebay} alt="lebay" width={80} height={80} />
                   ) : null}
                 </div>
@@ -310,16 +308,16 @@ export default function ButtonAddStory({ email }: { email: string }) {
                 {model === "standar" ? (
                   //   <div className="w-20 h-20 bg-blue-400 rounded-full"></div>
                   <Image src={standar} alt="standar" width={120} height={120} />
-                ) : model === "pemarah" ? (
+                ) : model === "angry" ? (
                   <Image src={marah} alt="standar" width={120} height={120} />
-                ) : model === "tidak peduli" ? (
+                ) : model === "ignorance" ? (
                   <Image
                     src={tidakPeduli}
                     alt="standar"
                     width={120}
                     height={120}
                   />
-                ) : model === "lebay" ? (
+                ) : model === "overreacting" ? (
                   <Image src={lebay} alt="standar" width={120} height={120} />
                 ) : null}
                 <Popover open={open} onOpenChange={setOpen}>

@@ -36,8 +36,8 @@ export default async function Page() {
   return (
     <UserSidebar>
       <div className="mb-6 px-4">
-        <h2 className="font-bold text-2xl">Analisis</h2>
-        <p>Cek progres perasaanmu yuks</p>
+        <h2 className="font-bold text-2xl">Analysis</h2>
+        <p>Check the progress of your feelings</p>
       </div>
       <div className="flex flex-col md:flex-row gap-10 md:gap-20 px-4">
         <div className="w-full md:w-[300px] rounded-md border border-gray-100 p-6">

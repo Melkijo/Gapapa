@@ -68,10 +68,12 @@ export default function TableStories({
           <TableRow>
             <TableHead>No</TableHead>
 
-            <TableHead>Tanggal</TableHead>
-            <TableHead>Perasaan</TableHead>
-            <TableHead className="  hidden md:block">Cerita</TableHead>
-            <TableHead>Aksi</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Feel</TableHead>
+            <TableHead className="  hidden md:flex items-center">
+              Story
+            </TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -89,7 +91,7 @@ export default function TableStories({
                 <div className="flex gap-2 flex-col md:flex-row md:gap-4 ">
                   <Dialog>
                     <DialogTrigger className={buttonVariants()}>
-                      Lihat
+                      View
                     </DialogTrigger>
                     <DialogContent>
                       <div className="flex gap-6 flex-col md:flex-row ">
@@ -108,18 +110,18 @@ export default function TableStories({
                             )}
                           </div>
                           <div className="w-full flex justify-between">
-                            <h5 className="font-semibold">Perasaan:</h5>
+                            <h5 className="font-semibold">Feel:</h5>
                             <p>{item.feel}</p>
                           </div>
                           <div className="w-full flex justify-between">
-                            <h5 className="font-semibold">Tanggal:</h5>
+                            <h5 className="font-semibold">Date:</h5>
                             <p>{item.storyDate}</p>
                           </div>
                         </div>
                         <ScrollArea className="h-[200px] md:h-[500px] w-full rounded-md pe-4 ">
                           <div className="flex flex-col">
                             <div className="mb-4">
-                              <h5 className="font-semibold">Cerita</h5>
+                              <h5 className="font-semibold">Story</h5>
                               <StoryText text={item.story} />
                             </div>
                             <div>
@@ -137,15 +139,14 @@ export default function TableStories({
                   </Dialog>
                   <Dialog>
                     <DialogTrigger className={buttonVariants()}>
-                      Hapus
+                      Delete
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Are you absolutely sure?</DialogTitle>
                         <DialogDescription>
                           This action cannot be undone. This will permanently
-                          delete your account and remove your data from our
-                          servers.
+                          remove your data from our servers.
                         </DialogDescription>
                       </DialogHeader>
                       <DialogFooter className="sm:justify-start">
@@ -159,7 +160,7 @@ export default function TableStories({
                             onClick={() => handleDeleteStory(item.id)}
                             variant="destructive"
                           >
-                            Hapus
+                            Delete
                           </Button>
                         </DialogClose>
                       </DialogFooter>
@@ -176,13 +177,13 @@ export default function TableStories({
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          Sebelumnya
+          Prev
         </Button>
         <Button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === Math.ceil(sortedData.length / itemsPerPage)}
         >
-          Selanjutnya
+          Next
         </Button>
       </div>
     </div>

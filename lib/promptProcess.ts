@@ -18,25 +18,24 @@ export default async function promptProcess(values: z.infer<typeof formSchema>) 
 
         switch (values.model) {
             case "standar":
-                prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat atau kata-kata motivasi yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
+                prompt = `my story: ${values.story}  Based on the emotion analysis, the dominant emotion felt is  ${values.feel}. Provide appropriate advice or motivational words to overcome or strengthen this emotion. answer in the same language as in the story.` ;
                 break;
-            case "pemarah":
-                prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat yang seperti memarahi atau kata-kata motivasi yang keras yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
+            case "angry":
+                prompt = `my story: ${values.story} Based on the emotion analysis, the dominant emotion felt is ${values.feel}. Provide scolding-like advice or strong motivational words as appropriate to address or reinforce these emotions. answer in the same language as in the story.` ;
 
                break;
-            case "tidak peduli":
-                prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat yang terkesan tidak peduli yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
+            case "ignorance":
+                prompt = `my story: ${values.story} Based on the emotion analysis, the dominant emotion felt is ${values.feel}. Give seemingly uncaring advice that is appropriate to address or reinforce these emotions. answer in the same language as in the story.` ;
                 break;
              
-            case "lebay":
-                prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat yang dilebih lebihkan atau kata-kata motivasi berlebihan yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
+            case "overreacting":
+                prompt = `my story: ${values.story} Based on the emotion analysis, the dominant emotion felt is ${values.feel}. Give exaggerated advice or appropriate exaggerated motivational words to address or reinforce these emotions. answer in the same language as in the story.` ;
                 break;
             default:
-                prompt = `${values.story} Berdasarkan analisis emosi, emosi dominan yang dirasakan adalah ${values.feel}. Berikan nasihat atau kata-kata motivasi yang sesuai untuk mengatasi atau memperkuat emosi ini.` ;
+                prompt = `my story: ${values.story} Based on the emotion analysis, the dominant emotion felt is ${values.feel}. Give appropriate advice or motivational words to overcome or strengthen these emotions. answer in the same language as in the story.` ;
                 break;
                
         }
-        console.log(prompt)
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const result = await model.generateContent(prompt);
     

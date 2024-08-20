@@ -22,7 +22,7 @@ export default function PieChartComponent({ data }: { data: StoryType[] }) {
 
   return (
     <>
-      <h3 className="font-semibold mb-4  text-lg">Perasaan hari ini</h3>
+      <h3 className="font-semibold mb-4  text-lg">Overall feel</h3>
       {/* make the color info */}
       <div className="grid grid-cols-2 mb-6 md:-mb-20">
         <div className="flex gap-2 items-center">
@@ -30,7 +30,7 @@ export default function PieChartComponent({ data }: { data: StoryType[] }) {
             className="w-4 h-4 rounded-full"
             style={{ backgroundColor: colors[3] }}
           ></div>
-          <p>Sedih</p>
+          <p>Sad</p>
         </div>
         <div className="flex gap-2 items-center">
           <div
@@ -44,21 +44,21 @@ export default function PieChartComponent({ data }: { data: StoryType[] }) {
             className="w-4 h-4 rounded-full"
             style={{ backgroundColor: colors[2] }}
           ></div>
-          <p>Senang</p>
+          <p>Happy</p>
         </div>
         <div className="flex gap-2 items-center">
           <div
             className="w-4 h-4 rounded-full"
             style={{ backgroundColor: colors[4] }}
           ></div>
-          <p>Sedikit senang</p>
+          <p>Little happy</p>
         </div>
         <div className="flex gap-2 items-center">
           <div
             className="w-4 h-4 rounded-full"
             style={{ backgroundColor: colors[0] }}
           ></div>
-          <p>Sedikit sedih</p>
+          <p>Little sad</p>
         </div>
       </div>
       <PieChart data={pieChartData} />
