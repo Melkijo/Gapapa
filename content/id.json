@@ -1,0 +1,11 @@
+{
+  "Home": {
+    "navigation": {
+      "home": "Beranda",
+      "about": "Tentang",
+      "contact": "Kontak Kami"
+    },
+    "title": "Internasionalisasi(i18n) di Next.js 14",
+    "description": "Next.js 14 memperkenalkan fitur internasionalisasi (i18n) yang ditingkatkan, memberdayakan pengembang untuk dengan mudah mengelola terjemahan, routing berbasis lokal, dan lokalisasi konten untuk aplikasi web yang dapat diakses secara global. <br /> <br /> Ini juga memanfaatkan dukungan bawaan untuk beberapa bahasa, pemuatan konten dinamis, dan penanganan fallback yang kuat."
+  }
+}

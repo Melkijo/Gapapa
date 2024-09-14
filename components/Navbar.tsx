@@ -1,20 +1,18 @@
 "use client";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { buttonVariants } from "@/components/ui/button";
-
+import { useRef } from "react";
+import LangSwitcher from "./LangSwitcher";
 import Link from "next/link";
 import { Logo } from "./icon";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const themeSwitcherRef = useRef<HTMLDivElement>(null);
   //check condition if link is not in home page
   const pathname = usePathname();
 
@@ -27,6 +25,11 @@ export default function Navbar() {
       {pathname == "/" && (
         <NavigationMenu>
           <NavigationMenuList>
+            {/* <NavigationMenuItem>
+              <div ref={themeSwitcherRef}>
+                <LangSwitcher />
+              </div>
+            </NavigationMenuItem> */}
             <NavigationMenuItem>
               <Link href="/masuk" legacyBehavior passHref>
                 <NavigationMenuLink className="py-2 px-4 hover:bg-gray-200 rounded-sm">

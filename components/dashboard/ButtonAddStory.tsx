@@ -277,7 +277,7 @@ export default function ButtonAddStory({ email }: { email: string }) {
           </ScrollArea>
           <div className="w-full h-full bg-blue-50  rounded-lg flex justify-center items-center mt-2 mr-2 overflow-hidden px-6">
             {promptResult ? (
-              <ScrollArea className="h-[350px] w-full rounded-md">
+              <ScrollArea className="h-[300px] w-full rounded-md">
                 <div className="flex justify-center mb-2">
                   {model === "standar" ? (
                     //   <div className="w-20 h-20 bg-blue-400 rounded-full"></div>

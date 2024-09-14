@@ -1,6 +1,8 @@
 import UserSidebar from "@/components/UserSidebar";
+import ButtonAddConsult from "@/components/dashboard/ButtonAddConsult";
 import ButtonAddStory from "@/components/dashboard/ButtonAddStory";
 import StoryList from "@/components/dashboard/StoryList";
+import { Button } from "@/components/ui/button";
 import { authConfig, loginIsRequiredServer } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 export default async function Page() {
@@ -16,8 +18,10 @@ export default async function Page() {
         <p>Just tell me, don't keep it bottled up.</p>
       </div>
       <div className="px-4">
-        <ButtonAddStory email={session?.user?.email || ""} />
-
+        <div className="flex gap-4">
+          <ButtonAddStory email={session?.user?.email || ""} />
+          <ButtonAddConsult email={session?.user?.email || ""} />
+        </div>
         <div className="my-4">
           <hr />
         </div>

@@ -3,8 +3,9 @@ import "./globals.css";
 import localFont from "next/font/local";
 import SessionProvider from "./SessionProvider";
 import { Toaster } from "@/components/ui/toaster";
+
 export const metadata: Metadata = {
-  title: "GApapa | AI journaling feedback",
+  title: "Gapapa | AI journaling feedback",
   description: "AI journaling feedback",
 };
 
@@ -15,9 +16,9 @@ const satoshi = localFont({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={satoshi.className}>

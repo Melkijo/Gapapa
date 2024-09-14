@@ -19,7 +19,7 @@ export default async function Page() {
           <div className="w-full md:w-[500px]">
             <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
             <div className="flex flex-col  gap-2">
-              <GoogleSignInButton />
+              <GoogleSignInButton text="Login with Google" />
               {/* <div className="flex gap-4 items-center border border-gray-300 rounded-lg py-2  justify-center hover:bg-gray-200">
                 <FacebookIcon />
                 <p className="font-medium">Masuk dengan Facebook</p>
