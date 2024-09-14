@@ -76,8 +76,8 @@ export default function ButtonAddConsult({ email }: { email: string }) {
         <Form {...form}>
           <h3 className="text-xl font-bold">Meet the Psycholog</h3>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="flex gap-8 flex-col lg:flex-row">
-              <ScrollArea className="w-full h-[400px] md:h-auto">
+            <ScrollArea className="w-full h-[400px] md:h-auto">
+              <div className="flex gap-8 flex-col md:flex-row">
                 <FormField
                   control={form.control}
                   name="dob"
@@ -159,8 +159,8 @@ export default function ButtonAddConsult({ email }: { email: string }) {
                     )}
                   />
                 </div>
-              </ScrollArea>
-            </div>
+              </div>
+            </ScrollArea>
             <div className="w-full flex justify-end">
               <Button type="submit" className="w-full md:w-auto">
                 Submit
